@@ -1,0 +1,40 @@
+common:
+  length: 10
+  n0: 1
+  mu: 0.2
+  diffusion: 1
+  alpha: 1
+  beta: 1
+  cells: 20
+  initial_rho: 'alpha*n0/beta'
+
+experiments:
+  1:
+    eta: [0.1, 0.4]
+    epsilon: 0.01
+    initial_n: 'n0*(1 + epsilon*(cos(pi*x/length) + cos(pi*y/length))/2)'
+    t_end: 180
+    samples: 121
+    interval: 80
+
+  2:
+    eta: [0.4, 0.8]
+    epsilon: 0.05
+    initial_n: 'n0*(1 + epsilon*noise)'
+    sigma: 2
+    seed: 89
+    cells: 60
+    t_end: 180
+    samples: 121
+    interval: 80
+
+  3:
+    eta: [0.8, 1.2]
+    epsilon: 0.03
+    initial_n: 'n0*(1 + epsilon*noise)'
+    sigma: 3
+    seed: 42
+    cells: 60
+    t_end: 180
+    samples: 121
+    interval: 80

@@ -1,0 +1,48 @@
+{
+  "experiment": 1,
+  "settings": {
+    "length": 10,
+    "n0": 1,
+    "mu": 0.2,
+    "diffusion": 1,
+    "alpha": 1,
+    "beta": 1,
+    "cells": 20,
+    "initial_rho": "alpha*n0/beta",
+    "eta": [
+      0.1,
+      0.4
+    ],
+    "epsilon": 0.01,
+    "initial_n": "n0*(1 + epsilon*(cos(pi*x/length) + cos(pi*y/length))/2)",
+    "t_end": 180,
+    "samples": 121,
+    "interval": 80
+  },
+  "first_mode": [
+    1,
+    0
+  ],
+  "cases": [
+    {
+      "eta": 0.1,
+      "continuous_eigenvalues_mode_10": [
+        -0.010668114090655045,
+        -1.107767138722417
+      ],
+      "minimum_n": 0.9900308266626687,
+      "minimum_rho": 0.991400627085949,
+      "nfev": 194
+    },
+    {
+      "eta": 0.4,
+      "continuous_eigenvalues_mode_10": [
+        0.01568704453053238,
+        -1.1341222973436045
+      ],
+      "minimum_n": 0.9115425235988565,
+      "minimum_rho": 0.913533876013204,
+      "nfev": 314
+    }
+  ]
+}
