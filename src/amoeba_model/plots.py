@@ -67,17 +67,19 @@ class Plotter:
             plt.close(fig)
 
     def eigenvalues(self, data: dict) -> None:
-        """Только непрерывные показатели роста первой пространственной моды."""
-        fig, ax = plt.subplots(figsize=(7, 4))
+        """Непрерывные показатели роста мод (1,0) и (0,1)."""
+        fig, axes = plt.subplots(1, 2, figsize=(11, 4), sharey=True)
         etas = [model.p.eta for model, _ in data.values()]
-        eigenvalues = np.array([model.eigenvalues() for model, _ in data.values()])
-        ax.plot(etas, eigenvalues[:, 0], "o-", label=r"$\gamma_+$")
-        ax.plot(etas, eigenvalues[:, 1], "o-", label=r"$\gamma_-$")
-        ax.axhline(0, color="black", linewidth=1)
-        ax.set_xlabel(r"$\eta$")
-        ax.set_ylabel("Показатель роста моды (1,0)")
-        ax.grid(alpha=0.3)
-        ax.legend()
+        for ax, mode in zip(axes, ((1, 0), (0, 1))):
+            eigenvalues = np.array([model.eigenvalues(mode) for model, _ in data.values()])
+            ax.plot(etas, eigenvalues[:, 0], "o-", label=r"$\gamma_+$")
+            ax.plot(etas, eigenvalues[:, 1], "o-", label=r"$\gamma_-$")
+            ax.axhline(0, color="black", linewidth=1)
+            ax.set_title(f"Мода {mode}")
+            ax.set_xlabel(r"$\eta$")
+            ax.grid(alpha=0.3)
+            ax.legend()
+        axes[0].set_ylabel("Показатель роста")
         fig.tight_layout()
         fig.savefig(self.directory / "eigenvalues.png", dpi=160)
         plt.close(fig)

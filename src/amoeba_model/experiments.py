@@ -28,6 +28,7 @@ def run_case(parameters: Parameters, t_end: float, samples: int):
         "equilibrium_n": model.equilibrium_n,
         "equilibrium_rho": model.equilibrium_rho,
         "continuous_eigenvalues_mode_10": model.eigenvalues().tolist(),
+        "continuous_eigenvalues_mode_01": model.eigenvalues((0, 1)).tolist(),
         "minimum_n": float(np.min(result.y[:model.size])),
         "minimum_rho": float(np.min(result.y[model.size:])),
         "nfev": result.nfev,
